@@ -183,7 +183,7 @@ function estadoCarrito () {
             <td>${item.categoria}</td>
             <td>${item.nombre}</td>
             <td>USD ${item.precio}</td>
-            <td><button class="btn btn-danger btn-sm mx-auto" onclick="quitar{item.id})">Quitar</button></td>
+            <td><button class="btn btn-danger btn-sm mx-auto" onclick="quitar(${item.id})">Quitar</button></td>
             </tr>
             <br>
             `);
