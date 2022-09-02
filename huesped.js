@@ -1,5 +1,5 @@
 // array donde se cargan los items agregados al carrito.
-let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+let carrito = JSON.parse(localStorage.getItem("pedido"))||[];
 
 //array que recibe el json de apilocal en formato JS
 let itemsJSON = [];
@@ -15,7 +15,7 @@ const contenedorCarrito = document.getElementById("listaItems");
 const footerCarrito = document.getElementById("tableFooter");
 
 //verficar carrito pendiente o vacio.
-const carritoAlmacenado = JSON.parse(localStorage.getItem("compra"));
+const carritoAlmacenado = JSON.parse(localStorage.getItem("pedido"));
 
 window.onload=()=>{
     listado = document.getElementById("lista");
@@ -92,13 +92,12 @@ function listarItem (item) {
     //se pushea el item seleccionado por id dinámica.
     carrito.push (item);
     //convierte carrito a JSON.
-    let carritoAJson = JSON.stringify("compra", carrito);
+    const carritoAJson = JSON.stringify(carrito);
     //se guarda carrito formato JSON en local storage.
-    localStorage.setItem("compra", carritoAJson);
+    localStorage.setItem("pedido", carritoAJson);
     //avisar por swal que se agrego un elemento al carrito.
     swal.fire("Excelente!", `"Agregaste ${item.nombre} a tu pedido."`, "success");
     //se crea el contador del carrito.
-    let sumarCarrito = 0;
     contenedorCarrito.innerHTML ="";
         carrito.forEach(
             (item) => {
@@ -112,13 +111,11 @@ function listarItem (item) {
             </tr>
             <br>
             `);
-            //sumador de precios en lista del carrito.
-            sumarCarrito += item.precio;
         }
     );
     //bloque de codigo ternario que modifica el modal carrito si deja de estar vacío.
-    carritoAlmacenado == "" ? footerCarrito.innerHTML = `<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`: footerCarrito.innerHTML = `<tr><th>Total USD</th><td>${(calcularTotal())}</td></tr>`;
-}
+    carritoAlmacenado == "" ? footerCarrito.innerHTML = (`<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`): footerCarrito.innerHTML = (`<tr><th>Total USD</th><td>${(calcularTotal())}</td></tr>`);
+}   
 
 //funcion para quitar objetos de el pedido.
 function quitar (id) {
@@ -126,11 +123,11 @@ function quitar (id) {
     carrito.splice(posicion,1);
     let filaAQuitar = document.getElementById(`fila${id}`);
     contenedorCarrito.removeChild(filaAQuitar);
-    carritoAlmacenado == "" ? footerCarrito.innerHTML = `<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`: footerCarrito.innerHTML = `<tr><th>Total USD</th><td>${calcularTotal()}</td></tr>`;
+    carritoAlmacenado == "" ? footerCarrito.innerHTML = (`<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`): footerCarrito.innerHTML = (`<tr><th>Total USD</th><td>${calcularTotal()}</td></tr>`);
     //convierte carrito a JSON.
     let carritoAJson = JSON.stringify(carrito);
     //se guarda carrito formato JSON en local storage.
-    localStorage.setItem("compra", carritoAJson);
+    localStorage.setItem("pedido", carritoAJson);
     Swal.fire("Servicio removido!")
     
 }
@@ -177,11 +174,10 @@ function estadoCarrito () {
                         )
                     }
             });
-            let sumarCarrito = 0;    
             //bloque de codigo que trae el carrito del storage y lo dibuja en el carrito abandonado.
         carritoAlmacenado.forEach(
         (item) => {
-            contenedorCarrito.innerHTML += `
+            contenedorCarrito.innerHTML += (`
             <tr id="fila${item.id}" scope="row" colspan="5">
             <td>${item.id}</td>
             <td>${item.categoria}</td>
@@ -190,19 +186,17 @@ function estadoCarrito () {
             <td><button class="btn btn-danger btn-sm mx-auto" onclick="quitar{item.id})">Quitar</button></td>
             </tr>
             <br>
-            `;
-            //sumador de precios en lista del carrito.
-            sumarCarrito += item.precio;
+            `);
         });
         //bloque de codigo ternario que modifica el modal carrito si deja de estar vacío.
-        carritoAlmacenado == "" ? footerCarrito.innerHTML = `<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`: footerCarrito.innerHTML = `<tr><th>Total USD</th><td>${(calcularTotal())}</td></tr>`;
+        carritoAlmacenado == "" ? footerCarrito.innerHTML = (`<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`): footerCarrito.innerHTML = (`<tr><th>Total USD</th><td>${(calcularTotal())}</td></tr>`);
                 
     }
 }
 
 function calcularTotal() {
     let suma = 0;
-    for (const item of carrito) {
+    for (const item of (carrito)) {
         suma += item.precio;
     }
     return suma;
@@ -216,4 +210,5 @@ async function miApiAJSON () {
     itemsJSON = datos;
     mostrarServicios();
 }
-// console.log(carrito);
+console.log(itemsJSON);
+//console.log(carrito);

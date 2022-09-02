@@ -2,7 +2,7 @@
     {
         "id": 1,
         "categoria":"Comida",
-        "foto":"/Images/desayuno1.png",
+        "foto":"./Images/desayuno1.png",
         "nombre":"Desayuno Continental",
         "descripcion":"Servicio disponible de 6:00 a 8:00 am",
         "precio":0
@@ -10,7 +10,7 @@
     {
         "id": 2,
         "categoria": "Comida",
-        "foto":"/Images/merienda.png",
+        "foto":"./Images/merienda.png",
         "nombre":"Merienda completa",
         "descripcion":"Servicio disponible de 15:00 a 17:00 hs",
         "precio":10
@@ -18,7 +18,7 @@
     {
         "id": 3,
         "categoria": "Servicio",
-        "foto":"/Images/toallas.png",
+        "foto":"./Images/toallas.png",
         "nombre":"Toallas extra",
         "descripcion":"Reposición de toallas",
         "precio":0
@@ -26,7 +26,7 @@
     {
         "id":4,
         "categoria": "Servicio",
-        "foto":"/Images/lavanderia.png",
+        "foto":"./Images/lavanderia.png",
         "nombre":"Lavandería",
         "descripcion":"Servicio disponible de 7:00 a 15:00 hs",
         "precio":15
@@ -34,7 +34,7 @@
     {
         "id": 5,
         "categoria": "Ocio",
-        "foto":"/Images/tvPremium.png",
+        "foto":"./Images/tvPremium.png",
         "nombre":"Tv Premium",
         "descripcion":"Servicio válido por 24hs",
         "precio":5
@@ -42,7 +42,7 @@
     {
         "id": 6,
         "categoria": "Servicio",
-        "foto":"/Images/masajes.png",
+        "foto":"./Images/masajes.png",
         "nombre":"Masaje descontracturante",
         "descripcion":"Servicio por persona",
         "precio":15
