@@ -10,7 +10,6 @@ let listado;
 //captura de elemento carrito.
 const contenedorCarrito = document.getElementById("listaItems");
 
-
 //captura de cuerpo del carrito.
 const footerCarrito = document.getElementById("tableFooter");
 
@@ -22,44 +21,6 @@ window.onload=()=>{
     miApiAJSON();
     estadoCarrito();
 }
-
-//funcion que crea el login mediante Sweet Alert.
-// async function ingresar (){
-//     let {value : datos} = await swal.fire({
-//         title : "Bienvenido",
-//         confirmButtonText: "Ingresar",
-//         html:`
-//         <div style="margin:5px">
-//             <input class="swal2-input" placeholder="Usuario (117)" id="usuario">
-//             <input class="swal2-input" placeholder="Contraseña (invitado)" id="contrasenia">
-//         </div>
-//         `,
-//     preConfirm: () => {
-//         let usuario = document.getElementById("usuario").value;
-//         let contrasenia = document.getElementById("contrasenia").value;
-//         if (!usuario) {
-//             Swal.showValidationMessage("Debe ingresar el usuario.");
-//             return false;
-//         }
-//         if (!contrasenia) {
-//             Swal.showValidationMessage("Debe ingresar contraseña");
-//             return false;
-//         }
-//         let datos = baseDatos[usuario]
-//         if(!datos) {
-//             Swal.showValidationMessage("El usuario no existe.");
-//             return false;
-//         }
-//         if(datos.contrasenia != contrasenia){
-//             Swal.showValidationMessage("Contraseña incorrecta.");
-//             return false;
-//         }
-//         return datos;
-//         },
-//     });
-//     return datos;
-// }
-
 
 //función molde para crear formato cartas.
 function mostrarServicios() {
