@@ -4,7 +4,7 @@
         "categoria":"Comida",
         "foto":"./Images/desayuno1.png",
         "nombre":"Desayuno Continental",
-        "descripcion":"Servicio disponible de 6:00 a 8:00 am",
+        "descripcion":"Servicio disponible de 6:00 a 8:00 am.",
         "precio":0
     },
     {
@@ -12,7 +12,7 @@
         "categoria": "Comida",
         "foto":"./Images/merienda.png",
         "nombre":"Merienda completa",
-        "descripcion":"Servicio disponible de 15:00 a 17:00 hs",
+        "descripcion":"Servicio disponible de 15:00 a 17:00 hs.",
         "precio":10
     },
     {
@@ -20,7 +20,7 @@
         "categoria": "Servicio",
         "foto":"./Images/toallas.png",
         "nombre":"Toallas extra",
-        "descripcion":"Reposición de toallas",
+        "descripcion":"Reposición de toallas, disponible las 24hs.",
         "precio":0
     },
     {
@@ -28,7 +28,7 @@
         "categoria": "Servicio",
         "foto":"./Images/lavanderia.png",
         "nombre":"Lavandería",
-        "descripcion":"Servicio disponible de 7:00 a 15:00 hs",
+        "descripcion":"Servicio disponible de 7:00 a 15:00 hs.",
         "precio":15
     },
     {
@@ -36,7 +36,7 @@
         "categoria": "Ocio",
         "foto":"./Images/tvPremium.png",
         "nombre":"Tv Premium",
-        "descripcion":"Servicio válido por 24hs",
+        "descripcion":"Servicio válido por 24hs desde su activación.",
         "precio":5
     },
     {
@@ -44,7 +44,31 @@
         "categoria": "Servicio",
         "foto":"./Images/masajes.png",
         "nombre":"Masaje descontracturante",
-        "descripcion":"Servicio por persona",
+        "descripcion":"Servicio disponible en 1hra pos solicitud.",
         "precio":15
+    },
+    {
+        "id": 7,
+        "categoria":"Bebida",
+        "foto":"./Images/johnniewalkerBlack.png",
+        "nombre":"Whisky Jhonnie Walker Black",
+        "descripcion":"Servicio disponible las 24hs.",
+        "precio":44
+    },
+    {
+        "id": 8,
+        "categoria":"Bebida",
+        "foto":"./Images/oldParr.png",
+        "nombre":"Whisky Old Parr",
+        "descripcion":"Servicio disponible las 24hs.",
+        "precio":46
+    },
+    {
+        "id": 9,
+        "categoria":"Bebida",
+        "foto":"./Images/jackdaniels.png",
+        "nombre":"Whisky Jack Daniels",
+        "descripcion":"Servicio disponible las 24hs.",
+        "precio":50
     }
 ]

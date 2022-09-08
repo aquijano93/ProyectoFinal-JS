@@ -16,6 +16,7 @@ const footerCarrito = document.getElementById("tableFooter");
 //verficar carrito pendiente o vacio.
 const carritoAlmacenado = JSON.parse(localStorage.getItem("pedido"));
 
+//llamado a funciones de prioridad al cargar el html.
 window.onload=()=>{
     listado = document.getElementById("lista");
     miApiAJSON();
@@ -78,19 +79,19 @@ function listarItem (item) {
     carritoAlmacenado == "" ? footerCarrito.innerHTML = (`<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`): footerCarrito.innerHTML = (`<tr><th>Total USD</th><td>${(calcularTotal())}</td></tr>`);
 }   
 
-//funcion para quitar objetos de el pedido.
+//funcion para quitar objetos de el pedido (carrito).
 function quitar (id) {
     let posicion = carrito.findIndex(item => item.id==id);
     carrito.splice(posicion,1);
     let filaAQuitar = document.getElementById(`fila${id}`);
     contenedorCarrito.removeChild(filaAQuitar);
+    //condicionale ternario que modifica el footer del carrito si este queda vacío.
     carritoAlmacenado == "" ? footerCarrito.innerHTML = (`<th scope="row" colspan="6">Aún no solicitó ningun servicio.</th>`): footerCarrito.innerHTML = (`<tr><th>Total USD</th><td>${calcularTotal()}</td></tr>`);
     //convierte carrito a JSON.
     let carritoAJson = JSON.stringify(carrito);
     //se guarda carrito formato JSON en local storage.
     localStorage.setItem("pedido", carritoAJson);
     Swal.fire("Servicio removido!")
-    
 }
 
 
@@ -104,8 +105,15 @@ function estadoCarrito () {
         },
         buttonsStyling: false
     })
+    //mensaje de bienvenida al servicio al cuarto ejecutable solo si el carrito se encuentra vacío.
+    if(!carritoAlmacenado){
+        Swal.fire({
+            title:"Bienvenido/a",
+            text:"Este es nuestro Servicio al cuarto online. \n Los servicios con horarios serán despachados dentro de los margenes \n estipulados en la descripción del mismo y serán cargados a la cuenta de consumo de la habitación."
+        });
+    }
+    //alerta que indica el carrito abandonado, propone retomarlo o reiniciarlo por completo.
     if(carritoAlmacenado){
-        //alerta que indica el carrito abandonado.
         swal.fire({
             title: "Estado del carrito.",
             text: "Tienes un carrito pendiente, deseas retomarlo?",
@@ -126,8 +134,8 @@ function estadoCarrito () {
                 } else {
                     //se borra los datos del carrito del local storage.
                     localStorage.clear();
-                    //se refresca la pagina para la visualizacion mediante interacciòn del usuario.
-                    location.reload()
+                    //se refresca la pagina para la visualizacion inmediata del carrito vacío.
+                    location.reload();
                     swalWithBootstrapButtons.fire(
                         "Listo!",
                         "Hemos vaciado tu carrito!",
@@ -155,6 +163,7 @@ function estadoCarrito () {
     }
 }
 
+//funcion reutilizable para calcular la suma del carrito activo y carrito abandonado.
 function calcularTotal() {
     let suma = 0;
     for (const item of (carrito)) {
@@ -163,7 +172,24 @@ function calcularTotal() {
     return suma;
 }
 
-//obtener api local
+//funcion "comprar" del carrito.
+function comprar () {
+        Swal.fire({
+            title:"Excelente!",
+            text:"Su pedido fue realizado con exito y será despachado a la brevedad.",
+            icon:"success"
+        });
+            //se borra los datos del carrito del local storage, con tiempo de retraso.
+            setTimeout(() => { 
+                localStorage.clear();
+            },1000);
+            //se refresca la pagina para la visualizacion del carrito vacío con un tiempo de retraso.
+            setTimeout (() => {
+                location.reload();
+            }, 3000);                
+}
+
+//funcion async que obtiene api local para renderizar servicios al cuarto.
 async function miApiAJSON () {
     const URLJSON ="apiLocal.json";
     const respuesta = await fetch(URLJSON);
@@ -171,5 +197,6 @@ async function miApiAJSON () {
     itemsJSON = datos;
     mostrarServicios();
 }
-console.log(itemsJSON);
+//pruebas
+//console.log(itemsJSON);
 //console.log(carrito);
